@@ -3,7 +3,6 @@
 
 // On startup: sudo chmod a+rw /dev/ttyUSB0
 
-
 // Replace with your network credentials
 const char* ssid = "";
 const char* password = "";
@@ -93,21 +92,27 @@ void loop(){
             // CSS to style the on/off buttons 
             // Feel free to change the background-color and font-size attributes to fit your preferences
             client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
-            client.println(".button { background-color: #555555; border: none; color: white; padding: 16px 40px;");
-            client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}");
-            client.println(".button2 {background-color: #4CAF50;}</style></head>");
+            client.println("body {font-family: monospace, sans-serif;margin: 0;padding: 0;background-color: #3a3a3a;color: #ffffff;");
+            client.println("background-size: cover;}");
+            client.println(".button { background-color: #222; border-radius: 4px;border-style: none;box-sizing: border-box;");
+            client.println("color: #fff;cursor: pointer; display: inline-block; font-family: \"monospace\",\"Helvetica Neue\",Arial,sans-serif;");
+            client.println("font-size: 16px;font-weight: 700;line-height: 1.5;margin: 0;max-width: 100px;min-height: 44px;min-width: 10px;");
+            client.println("outline: none;overflow: hidden;padding: 9px 20px 8px;position: relative;text-align: center;text-transform: none;");
+            client.println("user-select: none;-webkit-user-select: none;touch-action: manipulation;width: 100%;}");
+            client.println(".button:hover, .button:focus {opacity: .75;}</style></head>");
             
             // Web Page Heading
-            client.println("<body><h1>Online Coffee</h1>");
+            client.println("<body><h1>Cam's Instant Coffee</h1>");
             
             // Display current state, and ON/OFF buttons for GPIO 26  
             client.println("<p>GPIO 26 - State " + output26State + "</p>");
             // If the output26State is off, it displays the ON button       
             if (output26State=="off") {
-              client.println("<p><a href=\"/26/on\"><button class=\"button\">OFF</button></a></p>");
+              client.println("<p><a href=\"/26/on\"><button class=\"button\" role=\"button\">OFF</button></a></p>");
             } else {
-              client.println("<p><a href=\"/26/off\"><button class=\"button button2\">ON</button></a></p>");
-            } 
+              client.println("<p><a href=\"/26/off\"><button style =\"background-color: #4CAF50;\" class= \"button\" role=\"button\">ON</button></a></p>");
+            }
+            client.println("<p><img src=\"https://static.vecteezy.com/system/resources/thumbnails/021/049/268/small/3d-realistic-coffee-cup-coffee-cup-cartoon-free-png.png\" alt=\"Coffee\" /></p>");
             client.println("</body></html>");
             
             // The HTTP response ends with another blank line
